@@ -1,0 +1,31 @@
+let express = require("express")
+let myApp = express()
+myApp.use(express.urlencoded({extended: false}))
+myApp.get('/', function(req, res){
+    res.send(`
+    <form action = "/answer" method = "POST">
+    <p>What is the color of the sky on a clear sunny day</p>
+    <input name = "skyColor" autocomplete = "off">
+    <button>Submit answer</button>
+    </form>
+    `)
+})
+myApp.post('/answer', function(req, res){
+    if(req.body.skyColor.toUpperCase() == "BLUE"){
+        res.send(`
+        <p>Congrats, that's the correct answer</p>
+        <a href = "/">Back to Homepage</a>
+        `)
+    }
+    else{
+        res.send(`
+        <p>Sorry, that's the wrong answer, Try again!</p>
+        <a href = "/">Back to Homepage</a>
+        `)
+    }
+})
+myApp.listen(3000)
+
+//install express using npm install express
+1.node_modules
+2.package-lock.json
